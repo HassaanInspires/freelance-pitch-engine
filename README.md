@@ -34,9 +34,10 @@ The server exposes resources, tools, and prompts conforming to the Model Context
 ## Setup & Running
 
 ### Installation
-Install dependencies via `uv` or standard Python:
+Install dependencies and run the auto-setup command:
 ```bash
 uv pip install -e .
+pitch-engine-setup
 ```
 
 ### Running Locally

@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# User Data & Output
+profile.txt
+jobs_to_review.json
+proposal.md
+
+# Portfolio directory (Ignore all user case studies, but KEEP the template)
+portfolio/*.md
+!portfolio/template.md

@@ -1,0 +1,13 @@
+[project]
+name = "freelance-pitch-engine"
+version = "0.1.0"
+description = "Freelance pitch automation and context sandbox"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastmcp>=3.4.2",
+    "mcp>=1.28.1",
+]
+
+[project.scripts]
+freelance-pitch-engine = "server:mcp.run"

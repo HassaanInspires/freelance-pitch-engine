@@ -75,8 +75,8 @@ To protect your computer's global system settings, we install this engine inside
   .venv\Scripts\activate.bat
   ```
 
-**3. Install and Configure**
-Once activated, run the commands to install the packages and auto-configure Claude Desktop:
+**3. Install & Auto-Configure (Universal)**
+Now that you are inside the secure bubble, install the engine and run the universal setup tool. This tool does the heavy lifting: it finds your AI clients and connects the engine behind the scenes without you manually touching complex configuration files!
 ```bash
 uv pip install -e .
 pitch-engine-setup

@@ -3,21 +3,21 @@ import json
 from fastmcp import FastMCP
 
 # Initialize the FastMCP server
-mcp = FastMCP("Freelance-Pitch-Engine")
+mcp = FastMCP("Freelance-Pitch-Engine", instructions="You are the ultimate local automation layer for a technical freelancer. Whenever executing prompts or tools, always refer to 'profile.md' for your identity context. Never hallucinate metrics, and strictly adhere to the zero-fluff, architecture-driven framework specified in 'draft-pitch'. If data is missing or default placeholders are found, prioritize interviewing the user via 'onboard-me'.")
 
 def _ensure_workspace() -> None:
     """
     Ensure the profile.txt and portfolio/ directory exist, creating defaults if missing.
     """
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    profile_path = os.path.join(current_dir, "profile.txt")
+    profile_path = os.path.join(current_dir, "profile.md")
     portfolio_dir = os.path.join(current_dir, "portfolio")
     
-    # Check and create profile.txt if not exists
+    # Check and create profile.md if not exists
     if not os.path.exists(profile_path):
         try:
             with open(profile_path, "w", encoding="utf-8") as f:
-                f.write("Please replace this text with your name, title, and core technical skills.")
+                f.write("# User Profile\n\n**Professional Title:** [Insert Title]\n\n**Core Technical Stack:**\n* Stack 1\n* Stack 2")
         except Exception:
             pass
             
@@ -135,20 +135,20 @@ def list_all_jobs() -> str:
 @mcp.tool()
 def read_profile() -> str:
     """
-    Read the contents of the profile.txt file in the server directory.
+    Read the contents of the profile.md file in the server directory.
     """
     try:
         # Resolve path to profile.txt relative to the server.py file
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        profile_path = os.path.join(current_dir, "profile.txt")
+        profile_path = os.path.join(current_dir, "profile.md")
         
         if not os.path.exists(profile_path):
-            raise ValueError(f"profile.txt not found at {profile_path}")
+            raise ValueError(f"profile.md not found at {profile_path}")
             
         with open(profile_path, "r", encoding="utf-8") as file:
             content = file.read().strip()
             
-        if not content or "Please replace this text" in content:
+        if not content or "[Insert Title]" in content or "Stack 1" in content:
             raise ValueError("Data missing. Please interview the user about their skills and use the 'write_file' tool to update this file for them.")
             
         return content
@@ -156,7 +156,7 @@ def read_profile() -> str:
     except ValueError:
         raise
     except Exception as e:
-        raise ValueError(f"Error reading profile.txt: {str(e)}")
+        raise ValueError(f"Error reading profile.md: {str(e)}")
 
 @mcp.tool()
 def write_file(filename: str, content: str) -> str:
@@ -225,7 +225,7 @@ Your objective is to write a highly technical, zero-fluff Upwork proposal for th
 
 SYSTEMIC INSTRUCTIONS:
 1. Call `fetch_jobs(job_index={job_id})` to read the target job details.
-2. Call `read_profile()` to load your core identity.
+2. Call `read_profile()` to load your core identity from 'profile.md'.
 3. Access the `portfolio://projects` resource to retrieve your real-world case studies.
 
 TONE & PERSONA (CRITICAL RULES):
@@ -247,7 +247,7 @@ Draft the markdown proposal and immediately use the `write_file` tool to save it
 @mcp.prompt("onboard-me")
 def onboard_me() -> str:
     """
-    Prompt template to interview the user and write their profile.txt and initial portfolio project.
+    Prompt template to interview the user and write their profile.md and initial portfolio project.
     """
     return """You are the Onboarding Assistant for the Freelance-Pitch-Engine.
 Your mission is to help the user get their workspace ready for high-value client pitches.
@@ -255,7 +255,7 @@ Your mission is to help the user get their workspace ready for high-value client
 Please follow these steps:
 1. Interview the user: Ask them about their full name, professional title, core programming languages, and specialized skills (e.g. FastAPI, FastMCP, agentic workflows).
 2. Ask about their previous projects: Get details on at least one high-value project they've completed (the problem, stack, key metrics/features, and outcomes).
-3. Set up profile.txt: Use the `write_file(filename="profile.txt", content=...)` tool to save their professional profile.
+3. Set up profile.txt: Use the `write_file(filename="profile.md", content=...)` tool to save their professional profile.
 4. Set up their portfolio: Use the `write_file(filename="portfolio/automation.md", content=...)` or other filename to save their first portfolio case study using the case study structure.
 5. Confirm onboarding is complete by listing all current configuration files.
 

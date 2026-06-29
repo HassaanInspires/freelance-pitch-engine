@@ -22,11 +22,11 @@ The server exposes resources, tools, and prompts conforming to the Model Context
 ### 2. Tools
 * **`list_all_jobs()`**: Displays a bulleted ledger showing the Index and Title of all active jobs in `jobs_to_review.json`.
 * **`fetch_jobs(job_index: int)`**: Retrieves raw details (Title, Link, and Description) for a specific job in the ledger.
-* **`read_profile()`**: Reads the freelancer's identity, title, and skillset from `profile.txt`.
-* **`write_file(filename: str, content: str)`**: Safely writes or updates any workspace file (e.g. `profile.txt`, `proposal.md`, or new portfolio projects) to the directory.
+* **`read_profile()`**: Reads the freelancer's identity, title, and skillset from `profile.md`.
+* **`write_file(filename: str, content: str)`**: Safely writes or updates any workspace file (e.g. `profile.md`, `proposal.md`, or new portfolio projects) to the directory.
 
 ### 3. Prompts
-* **`onboard-me`**: Guide for the AI client to interview the user about their skillset, set up their `profile.txt`, and draft their initial portfolio projects.
+* **`onboard-me`**: Guide for the AI client to interview the user about their skillset, set up their `profile.md`, and draft their initial portfolio projects.
 * **`draft-pitch(job_id: int)`**: A high-impact, zero-fluff system prompt that instructs the AI to pull the profile context, parse the portfolio projects, evaluate the selected job, and save a tailored proposal.
 
 ---

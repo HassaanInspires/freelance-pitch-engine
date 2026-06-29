@@ -33,8 +33,23 @@ The server exposes resources, tools, and prompts conforming to the Model Context
 
 ## Setup & Running
 
-### Installation
-Install dependencies and run the auto-setup command:
+### 💻 Supported Operating Systems
+This framework is fully cross-platform. The automated setup script natively supports:
+* **Windows** (`%APPDATA%` configurations)
+* **macOS** (`~/Library/Application Support` configurations)
+* **Linux** (`~/.config` configurations)
+
+### 📥 Step-by-Step Installation
+
+**1. Clone the Official Repository**
+Open your terminal (Command Prompt, PowerShell, or bash) and download the engine:
+```bash
+git clone https://github.com/HassaanInspires/freelance-pitch-engine.git
+cd freelance-pitch-engine
+```
+
+**2. Install Dependencies & Auto-Configure**
+Install the package locally and run the automated registration script to configure Claude Desktop:
 ```bash
 uv pip install -e .
 pitch-engine-setup

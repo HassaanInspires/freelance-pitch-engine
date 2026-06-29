@@ -17,5 +17,9 @@ pitch-engine-setup = "install:register_server"
 Homepage = "https://github.com/HassaanInspires/freelance-pitch-engine"
 Repository = "https://github.com/HassaanInspires/freelance-pitch-engine.git"
 
-[tool.hatch.build.targets.wheel]
-py-modules = ["server.py", "install.py"]
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["server", "install"]

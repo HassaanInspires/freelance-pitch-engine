@@ -60,3 +60,13 @@ To launch the MCP server:
 ```bash
 freelance-pitch-engine
 ```
+
+## 🌐 Free Live Web Job Integration (AI Client Orchestration)
+
+This MCP server acts as a secure, local evaluation sandbox. To find live web jobs completely for free without relying on paid search APIs, copy and paste this orchestration prompt directly into your AI Client session (Claude Code, Cursor, or Antigravity CLI):
+
+> "Use your native web search tool to find the 3 freshest 'Python AI Engineer' contract listings on Upwork or popular job boards. Clean out any extraneous HTML text, format them into our local ledger schema array, and call our `write_file` tool to overwrite 'jobs_to_review.json'. Finally, run the `draft-pitch` prompt for job index 0."
+
+### Why This Workflow is Elite:
+1. **100% Free Live Data:** Leverages your AI client's native, free browsing capabilities to scrape real-world job pages without requiring a paid Brave or Serp API subscription.
+2. **Multi-Modal Profile Ingestion (PDF / Images):** If you have a multi-page PDF resume or a screenshot of your portfolio, drag and drop the file into your AI client session and type: `"Run the onboard-me prompt using the information inside this attached file."` The AI client will natively parse the visual or text layers of the document and call `write_file` to update your local 'profile.md' automatically.

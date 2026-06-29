@@ -7,6 +7,7 @@ def register_server():
     Auto-register the freelance-pitch-engine MCP server across multiple AI clients:
     - Claude Desktop (OS-specific path)
     - Cursor (global config)
+    - OpenCode (global config)
     - Generic fallback (user home directory)
     """
     # 1. Resolve OS-specific Claude Desktop config path
@@ -25,16 +26,21 @@ def register_server():
     targets = {
         "Claude Desktop": claude_path,
         "Cursor": os.path.expanduser("~/.cursor/mcp.json"),
-        "Generic Fallback (OpenCode/Antigravity/Aider)": os.path.expanduser("~/mcp_config.json")
+        "OpenCode": os.path.expanduser("~/.opencode.json"),
+        "Generic Fallback (Antigravity/Aider)": os.path.expanduser("~/mcp_config.json")
     }
     
     # Track results
     results = {}
     
-    # Server settings to inject
+    # Dynamically find the absolute path to the executable inside the active virtual environment
+    venv_bin_dir = os.path.dirname(sys.executable)
+    exe_name = "freelance-pitch-engine.exe" if sys.platform == "win32" else "freelance-pitch-engine"
+    absolute_exe_path = os.path.join(venv_bin_dir, exe_name)
+    
     server_config = {
-        "command": "uvx",
-        "args": ["freelance-pitch-engine"]
+        "command": absolute_exe_path,
+        "args": []
     }
     
     print("Initializing Universal General Agent Auto-Installer...\n")

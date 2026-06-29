@@ -39,17 +39,44 @@ This framework is fully cross-platform. The automated setup script natively supp
 * **macOS** (`~/Library/Application Support` configurations)
 * **Linux** (`~/.config` configurations)
 
-### 📥 Step-by-Step Installation
+### 📥 Step-by-Step Installation (For Beginners)
 
-**1. Clone the Official Repository**
-Open your terminal (Command Prompt, PowerShell, or bash) and download the engine:
+**1. Download the Engine**
+First, open your terminal (Command Prompt, PowerShell, or bash) and download the code to your computer:
 ```bash
 git clone https://github.com/HassaanInspires/freelance-pitch-engine.git
 cd freelance-pitch-engine
 ```
 
-**2. Install Dependencies & Auto-Configure**
-Install the package locally and run the automated registration script to configure Claude Desktop:
+**2. Set Up a Safe Virtual Environment**
+To protect your computer's global system settings, we install this engine inside a local virtual environment. Run the appropriate commands for your operating system:
+
+* **macOS & Linux:**
+  ```bash
+  # Create the environment
+  uv venv
+  # Activate it
+  source .venv/bin/activate
+  ```
+
+* **Windows (PowerShell):**
+  ```powershell
+  # Create the environment
+  uv venv
+  # Activate it
+  .venv\Scripts\Activate.ps1
+  ```
+
+* **Windows (Command Prompt):**
+  ```cmd
+  # Create the environment
+  uv venv
+  # Activate it
+  .venv\Scripts\activate.bat
+  ```
+
+**3. Install and Configure**
+Once activated, run the commands to install the packages and auto-configure Claude Desktop:
 ```bash
 uv pip install -e .
 pitch-engine-setup
